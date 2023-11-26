@@ -1,95 +1,148 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import { useState } from "react";
+import styles from "./page.module.css";
+import CheckboxContainer from "@/components/CheckboxContainer";
+import Searchbar from "@/components/Searchbar";
+import Image from "next/image";
+
+export type Attendee = {
+  registered: string;
+  incognito: string;
+  first_name: string;
+  last_name: string;
+  school_year_code: string;
+};
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const initialAttendees = [
+    {
+      registered: "Yes",
+      incognito: "No",
+      first_name: "Jane",
+      last_name: "Hoya",
+      school_year_code: "College '92",
+    },
+    {
+      registered: "Yes",
+      incognito: "No",
+      first_name: "James",
+      last_name: "Saxa",
+      school_year_code: "College '72, Law '86",
+    },
+    {
+      registered: "No",
+      incognito: "Yes",
+      first_name: "Wiliam",
+      last_name: "Clinton",
+      school_year_code: "College '68",
+    },
+    {
+      registered: "No",
+      incognito: "No",
+      first_name: "George",
+      last_name: "Town",
+      school_year_code: "Law '86",
+    },
+  ];
+  const [attendees, setAttendees] = useState<Attendee[]>(initialAttendees);
+  const [filteredAttendees, setFilteredAttendees] = useState(attendees);
 
-      <div className={styles.center}>
+  const handleSearch = (filteredAttendees: Attendee[]) => {
+    setFilteredAttendees(filteredAttendees);
+  };
+
+  const handleCheckboxChange = (filteredAttendees: Attendee[]) => {
+    setFilteredAttendees(filteredAttendees);
+  };
+
+  return (
+    <main>
+      <div
+        style={{
+          position: "relative",
+          width: "500px",
+          height: "5rem",
+          background: "#041E42",
+        }}
+      >
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src="/georgetown-title.png"
+          alt="georgetown-title"
+          //TODO FIGURE OUT HEIGHT AND WIDTH
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+      <h1>Hoyas in August Event Attendees</h1>
+      <div className={styles.flexContainer}>
+        <div className={styles.filtes}>
+          <h5>Filter Attendees</h5>
+          <Searchbar
+            label="By Name"
+            attendees={attendees}
+            onSearch={handleSearch}
+          />
+          <CheckboxContainer
+            label="School"
+            attendees={attendees}
+            options={["College", "Law"]}
+            onCheckboxChange={handleCheckboxChange}
+          />
+          <CheckboxContainer
+            label="Registration Status"
+            attendees={attendees}
+            options={["Registered", "Not Registered"]}
+            onCheckboxChange={handleCheckboxChange}
+          />
+          <CheckboxContainer
+            label="Class"
+            attendees={attendees}
+            options={["'68", "'72", "'86", "'92"]}
+            onCheckboxChange={handleCheckboxChange}
+          />
+        </div>
+        <div
+          style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+          className={styles.attendees}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          {filteredAttendees.map((attendee) => (
+            <div
+              key={attendee.first_name}
+              style={{
+                border: "2px solid #333",
+                padding: "10px",
+                flex: "0 0 calc(50% - 10px)",
+                boxSizing: "border-box",
+              }}
+            >
+              <p>{attendee.school_year_code}</p>
+              <p>
+                {attendee.first_name} {attendee.last_name}
+              </p>
+              <p>{attendee.registered}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div
+        style={{
+          position: "relative",
+          width: "500px",
+          height: "5rem",
+          background: "#041E42",
+        }}
+      >
+        <Image
+          src="/georgetown-advancement-title.png"
+          alt="georgetown-advancement-title"
+          //TODO FIGURE OUT HEIGHT AND WIDTH
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
+        />
       </div>
     </main>
-  )
+  );
 }
