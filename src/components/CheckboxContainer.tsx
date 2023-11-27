@@ -64,7 +64,7 @@ const CheckboxContainer = ({
     <div>
       <h5
         style={{
-          marginBottom: "5px",
+          marginBottom: "1rem",
           color: "#041E42",
           fontFamily: "futura, sans-serif",
           fontWeight: 400,

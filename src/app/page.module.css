@@ -1,3 +1,12 @@
+.main h1 {
+  text-align: center;
+  font-family: "adobe-caslon-pro, serif";
+  font-style: italic;
+  font-weight: 100;
+  font-size: 4rem;
+  color: #041e42;
+}
+
 .flexContainer {
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +23,7 @@
   flex: 2;
   padding: 20px;
   box-sizing: border-box;
+  margin-top: 4.5rem;
 }
 
 .attendees p {
@@ -23,17 +33,6 @@
 .footerBar {
   margin-top: 2rem;
   position: relative;
-}
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center; /* Center text inside the container */
-  margin-top: 6rem;
-}
-
-.footer p {
-  margin: 0 12px;
 }
 
 @media (max-width: 768px) {

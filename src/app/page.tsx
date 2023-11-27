@@ -6,6 +6,9 @@ import CheckboxContainer from "@/components/CheckboxContainer";
 import Searchbar from "@/components/Searchbar";
 import Image from "next/legacy/image";
 import Divider from "@/components/Divider";
+import AttendeeCard from "@/components/AttendeeCard";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export type Attendee = {
   registered: string;
@@ -60,48 +63,9 @@ export default function Home() {
 
   return (
     <>
-      <header>
-        <div>
-          <div
-            style={{
-              width: "100%",
-              height: "4rem",
-              background: "#041E42",
-            }}
-          ></div>
-          <div
-            style={{
-              width: "18rem",
-              height: "4rem",
-              position: "absolute",
-              top: 0,
-              left: "25px",
-              zIndex: 1,
-            }}
-          >
-            <Image
-              src="/georgetown-title.png"
-              alt="georgetown-title"
-              layout="fill"
-              objectFit="contain"
-              objectPosition="center"
-            />
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className={styles.main}>
-        <h1
-          style={{
-            textAlign: "center",
-            fontFamily: "adobe-caslon-pro, serif",
-            fontStyle: "italic",
-            fontWeight: "lighter",
-            fontSize: "4rem",
-            color: "#041E42",
-          }}
-        >
-          Hoyas in August Event Attendees
-        </h1>
+        <h1>Hoyas in August Event Attendees</h1>
         <div className={styles.flexContainer}>
           <div className={styles.filters}>
             <h3
@@ -109,6 +73,7 @@ export default function Home() {
                 margin: 0,
                 color: "#041E42",
                 fontFamily: "adobe-caslon-pro, serif",
+                fontSize: "1.5rem",
               }}
             >
               Filter Attendees
@@ -145,54 +110,11 @@ export default function Home() {
               display: "flex",
               flexWrap: "wrap",
               gap: "10px",
-              marginTop: "4.5rem",
             }}
             className={styles.attendees}
           >
             {filteredAttendees.map((attendee) => (
-              <div
-                key={attendee.first_name}
-                style={{
-                  border: "1px solid #041E42",
-                  padding: "10px 20px",
-                  flex: "0 0 calc(50% - 10px)",
-                  boxSizing: "border-box",
-                  height: "8rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center", // Center vertically
-                  alignItems: "flex-start",
-                  width: "600px",
-                  maxWidth: "600px",
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "futura, sans-serif",
-                  }}
-                >
-                  {attendee.school_year_code}
-                </p>
-                <p
-                  style={{
-                    color: "#041E42",
-                    fontFamily: "adobe-caslon-pro, serif",
-                  }}
-                >
-                  {attendee.first_name} {attendee.last_name}
-                </p>
-                <p
-                  style={{
-                    color: "#041E42",
-                    fontFamily: "futura, sans-serif",
-                    fontWeight: 400,
-                  }}
-                >
-                  {attendee.registered === "Yes"
-                    ? "Registered"
-                    : "Not Registered"}
-                </p>
-              </div>
+              <AttendeeCard attendee={attendee} />
             ))}
           </div>
         </div>
@@ -228,12 +150,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <footer className={styles.footer}>
-        <p className="tkFuturaPt">Contact</p>
-        <p className="tkFuturaPt">Accessibility</p>
-        <p className="tkFuturaPt">Copyright</p>
-        <p className="tkFuturaPt">Privacy</p>
-      </footer>
+      <Footer />
     </>
   );
 }
