@@ -59,11 +59,10 @@ export default function Home() {
 
   return (
     <>
-      <main className={styles.main}>
+      <header>
         <div>
           <div
             style={{
-              border: "1px red solid",
               width: "100%",
               height: "5rem",
               background: "#041E42",
@@ -71,19 +70,18 @@ export default function Home() {
           ></div>
           <div
             style={{
-              border: "1px orange solid",
+              //TODO max width, responsive design
               width: "33%",
               height: "5rem",
               position: "absolute",
               top: 0,
-              left: 0,
+              left: "25px",
               zIndex: 1,
             }}
           >
             <Image
               src="/georgetown-title.png"
               alt="georgetown-title"
-              //TODO FIGURE OUT HEIGHT AND WIDTH
               layout="fill"
               objectFit="contain"
               objectPosition="center"
@@ -91,10 +89,12 @@ export default function Home() {
             />
           </div>
         </div>
+      </header>
+      <main className={styles.main}>
         <h1>Hoyas in August Event Attendees</h1>
         <div className={styles.flexContainer}>
           <div className={styles.filtes}>
-            <h5>Filter Attendees</h5>
+            <h3>Filter Attendees</h3>
             <Searchbar
               label="By Name"
               attendees={attendees}
@@ -150,7 +150,6 @@ export default function Home() {
           <div
             style={{
               position: "relative",
-              border: "1px red solid",
               width: "100%",
               height: "5rem",
               background: "#041E42",
