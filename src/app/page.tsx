@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import CheckboxContainer from "@/components/CheckboxContainer";
 import Searchbar from "@/components/Searchbar";
 import Image from "next/image";
+import Divider from "@/components/Divider";
 
 export type Attendee = {
   registered: string;
@@ -58,7 +59,7 @@ export default function Home() {
 
   return (
     <>
-      <main>
+      <main className={styles.main}>
         <div>
           <div
             style={{
@@ -99,18 +100,21 @@ export default function Home() {
               attendees={attendees}
               onSearch={handleSearch}
             />
+            <Divider />
             <CheckboxContainer
               label="School"
               attendees={attendees}
               options={["College", "Law"]}
               onCheckboxChange={handleCheckboxChange}
             />
+            <Divider />
             <CheckboxContainer
               label="Registration Status"
               attendees={attendees}
               options={["Registered", "Not Registered"]}
               onCheckboxChange={handleCheckboxChange}
             />
+            <Divider />
             <CheckboxContainer
               label="Class"
               attendees={attendees}
@@ -130,6 +134,7 @@ export default function Home() {
                   padding: "10px",
                   flex: "0 0 calc(50% - 10px)",
                   boxSizing: "border-box",
+                  height: "10rem",
                 }}
               >
                 <p>{attendee.school_year_code}</p>
