@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import CheckboxContainer from "@/components/CheckboxContainer";
 import Searchbar from "@/components/Searchbar";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Divider from "@/components/Divider";
 
 export type Attendee = {
