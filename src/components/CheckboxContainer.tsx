@@ -24,6 +24,8 @@ const CheckboxContainer = ({
 
     setSelectedCheckboxes(updatedCheckboxes);
 
+    console.log({ option });
+
     if (updatedCheckboxes.includes("Registered")) {
       const filteredAttendees = attendees.filter(
         (attendee) => attendee.registered === "Yes"
