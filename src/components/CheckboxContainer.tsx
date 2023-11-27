@@ -29,23 +29,21 @@ const CheckboxContainer = ({
       let propertyToCheck: String;
       if (label === "Class" || label === "School") {
         propertyToCheck = attendee.school_year_code;
-        console.log("class or school", propertyToCheck);
+        return targetStrings.every((target) =>
+          //for every one of the target strings, check to see if the propertyToCheck has a target
+          propertyToCheck.includes(target)
+        );
       } else if (label === "Registration Status") {
+        //TODO FIGURE OUT THSI LOGIC
         propertyToCheck = attendee.registered;
-        console.log("registry", propertyToCheck);
+        console.log("registry", propertyToCheck, targetStrings);
+        return targetStrings.every(() =>
+          //for every one of the target strings, check to see if the propertyToCheck has a target
+          propertyToCheck.includes("Yes")
+        );
       }
-
-      console.log({ targetStrings });
-      //targetStrings is like ['72, '68] or ['College', 'Law'] -- the options
-
-      return targetStrings.every((target) =>
-        //for every one of the target strings, check to see if the propertyToCheck has a target
-        propertyToCheck.includes(target)
-      );
     });
-    console.log(attendees, label, targetStrings);
 
-    console.log({ filteredAttendees });
     return filteredAttendees;
   };
 
@@ -57,33 +55,9 @@ const CheckboxContainer = ({
 
     setSelectedCheckboxes(updatedCheckboxes);
 
-    filterAttendees(attendees, label, updatedCheckboxes);
-
-    // if (updatedCheckboxes.includes("Registered")) {
-    //   const filteredAttendees = attendees.filter(
-    //     (attendee) => attendee.registered === "Yes"
-    //   );
-    //   onCheckboxChange(filteredAttendees);
-    // }
-    // if (updatedCheckboxes.includes("Not Registered")) {
-    //   const filteredAttendees = attendees.filter(
-    //     (attendee) => attendee.registered === "No"
-    //   );
-    //   onCheckboxChange(filteredAttendees);
-    // }
-
-    // if (updatedCheckboxes.includes("College")) {
-    //   const filteredAttendees = attendees.filter((attendee) =>
-    //     attendee.school_year_code.includes("College")
-    //   );
-    //   onCheckboxChange(filteredAttendees);
-    // }
-    // if (updatedCheckboxes.includes("Law")) {
-    //   const filteredAttendees = attendees.filter((attendee) =>
-    //     attendee.school_year_code.includes("Law")
-    //   );
-    //   onCheckboxChange(filteredAttendees);
-    // }
+    const filtered = filterAttendees(attendees, label, updatedCheckboxes);
+    //this will call setState to change what is rendered on the page
+    onCheckboxChange(filtered);
   };
 
   return (
