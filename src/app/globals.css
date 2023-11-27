@@ -1,4 +1,4 @@
-@import url("https://p.typekit.net/p.css?s=1&k=kxs8zon&ht=tk&f=8482.8483.10879.10884&a=14284513&app=typekit&e=css");
+@import url("https://use.typekit.net/kxs8zon.css");
 
 :root {
   --max-width: 1200px;
@@ -6,4 +6,48 @@
 
 body {
   margin: 0;
+}
+
+.tkAdobeCaslonPro {
+  font-family: "adobe-caslon-pro", serif;
+}
+.tkFuturaPt {
+  font-family: "futura-pt", sans-serif;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxWrapper label {
+  margin-left: 0.5rem;
+}
+
+.checkboxWrapper input[type="checkbox"] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 0.15em;
+  margin-right: 0.5em;
+  border: 0.1em solid #333;
+  outline: none;
+  cursor: pointer;
+}
+
+input.checked {
+  background-color: #041e42;
+  position: relative;
+}
+
+input.checked::before {
+  content: "";
+  font-size: 1.5em;
+  color: #fff;
+  position: absolute;
+  right: 1px;
+  top: -5px;
 }

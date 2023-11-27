@@ -92,10 +92,27 @@ export default function Home() {
         </div>
       </header>
       <main className={styles.main}>
-        <h1 style={{ textAlign: "center" }}>Hoyas in August Event Attendees</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            fontFamily: "adobe-caslon-pro, serif",
+            fontStyle: "italic",
+            color: "#041E42",
+          }}
+        >
+          Hoyas in August Event Attendees
+        </h1>
         <div className={styles.flexContainer}>
-          <div className={styles.filtes}>
-            <h3 style={{ marginBottom: 0 }}>Filter Attendees</h3>
+          <div className={styles.filters}>
+            <h3
+              style={{
+                marginBottom: 0,
+                color: "#041E42",
+                fontFamily: "adobe-caslon-pro, serif",
+              }}
+            >
+              Filter Attendees
+            </h3>
             <Searchbar
               label="By Name"
               attendees={attendees}
@@ -145,14 +162,36 @@ export default function Home() {
                   flexDirection: "column",
                   justifyContent: "center", // Center vertically
                   alignItems: "flex-start",
-                  maxWidth: "350px",
+                  width: "600px",
+                  maxWidth: "600px",
                 }}
               >
-                <p>{attendee.school_year_code}</p>
-                <p>
+                <p
+                  style={{
+                    fontFamily: "futura, sans-serif",
+                  }}
+                >
+                  {attendee.school_year_code}
+                </p>
+                <p
+                  style={{
+                    color: "#041E42",
+                    fontFamily: "adobe-caslon-pro, serif",
+                  }}
+                >
                   {attendee.first_name} {attendee.last_name}
                 </p>
-                <p>{attendee.registered}</p>
+                <p
+                  style={{
+                    color: "#041E42",
+                    fontFamily: "futura, sans-serif",
+                    fontWeight: 400,
+                  }}
+                >
+                  {attendee.registered === "Yes"
+                    ? "Registered"
+                    : "Not Registered"}
+                </p>
               </div>
             ))}
           </div>
@@ -190,10 +229,10 @@ export default function Home() {
         </div>
       </main>
       <footer className={styles.footer}>
-        <p>Contact</p>
-        <p>Accessibility</p>
-        <p>Copyright</p>
-        <p>Privacy</p>
+        <p className="tkFuturaPt">Contact</p>
+        <p className="tkFuturaPt">Accessibility</p>
+        <p className="tkFuturaPt">Copyright</p>
+        <p className="tkFuturaPt">Privacy</p>
       </footer>
     </>
   );

@@ -8,6 +8,10 @@ interface Props {
   onCheckboxChange: (filteredAttendees: Attendee[]) => void;
 }
 
+const labelStyle = {
+  fontFamily: "futura, sans-serif",
+};
+
 const CheckboxContainer = ({
   label,
   options,
@@ -15,6 +19,38 @@ const CheckboxContainer = ({
   onCheckboxChange,
 }: Props) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const filterAttendees = (
+    attendees: Attendee[],
+    label: string,
+    targetStrings: string[]
+  ) => {
+    const filteredAttendees = attendees.filter((attendee) => {
+      let propertyToCheck: String;
+      if (label === "Class" || label === "School") {
+        console.log("class or school");
+        propertyToCheck = attendee.school_year_code;
+      } else if (label === "Registration Status") {
+        console.log("registry");
+        propertyToCheck = attendee.registered;
+      }
+
+      console.log({ targetStrings });
+      console.log(
+        targetStrings.every((target) =>
+          String(propertyToCheck).toLowerCase().includes(target)
+        )
+      );
+      return targetStrings.every((target) =>
+        String(propertyToCheck).toLowerCase().includes(target)
+      );
+    });
+    console.log(attendees, label, targetStrings);
+
+    console.log({ filteredAttendees });
+    return filteredAttendees;
+  };
 
   const handleCheckboxChange = (option: string) => {
     // Toggle the selected state of the checkbox option
@@ -23,28 +59,7 @@ const CheckboxContainer = ({
       : [...selectedCheckboxes, option];
 
     setSelectedCheckboxes(updatedCheckboxes);
-
-    const filterAttendees = (
-      attendees: Attendee[],
-      label: string,
-      targetStrings: string[]
-    ) => {
-      const filteredAttendees = attendees.filter((attendee) => {
-        let propertyToCheck: String;
-        if (label === "Class" || label === "School") {
-          propertyToCheck = attendee.school_year_code;
-        } else if (label === "Registration Status") {
-          propertyToCheck = attendee.registered;
-        }
-
-        return targetStrings.every((target) =>
-          String(propertyToCheck).toLowerCase().includes(target)
-        );
-      });
-
-      console.log({ filteredAttendees });
-      return filteredAttendees;
-    };
+    setIsChecked((prev) => !prev);
 
     filterAttendees(attendees, label, updatedCheckboxes);
 
@@ -77,7 +92,16 @@ const CheckboxContainer = ({
 
   return (
     <div>
-      <h5 style={{ marginBottom: "5px" }}>{label}</h5>
+      <h5
+        style={{
+          marginBottom: "5px",
+          color: "#041E42",
+          fontFamily: "futura, sans-serif",
+          fontWeight: 400,
+        }}
+      >
+        {label}
+      </h5>
       <div
         style={{
           display: "flex",
@@ -88,6 +112,7 @@ const CheckboxContainer = ({
       >
         {options.map((option) => (
           <div
+            className="checkboxWrapper"
             key={option}
             style={{ flex: "0 0 calc(50% - 10px)", boxSizing: "border-box" }}
           >
@@ -97,8 +122,11 @@ const CheckboxContainer = ({
               style={{ borderRadius: 0 }}
               checked={selectedCheckboxes.includes(option)}
               onChange={() => handleCheckboxChange(option)}
+              className={isChecked ? "checked" : ""}
             />
-            <label htmlFor={option}>{option}</label>
+            <label htmlFor={option} style={labelStyle}>
+              {option}
+            </label>
           </div>
         ))}
       </div>

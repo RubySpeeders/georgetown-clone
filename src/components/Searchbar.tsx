@@ -31,7 +31,16 @@ const Searchbar = ({ label, attendees, onSearch }: Props) => {
         flexDirection: "column",
       }}
     >
-      <h5 style={{ marginBottom: "5px" }}>{label}</h5>
+      <h5
+        style={{
+          marginBottom: "5px",
+          color: "#041E42",
+          fontFamily: "futura, sans-serif",
+          fontWeight: 400,
+        }}
+      >
+        {label}
+      </h5>
       <div style={{ display: "flex" }}>
         <input
           type="text"
