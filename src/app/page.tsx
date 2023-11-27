@@ -13,6 +13,7 @@ export type Attendee = {
   first_name: string;
   last_name: string;
   school_year_code: string;
+  [key: string]: string; // Index signature for dynamic properties
 };
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
           <div
             style={{
               width: "100%",
-              height: "5rem",
+              height: "4rem",
               background: "#041E42",
             }}
           ></div>
@@ -72,7 +73,7 @@ export default function Home() {
             style={{
               //TODO max width, responsive design
               width: "33%",
-              height: "5rem",
+              height: "4rem",
               position: "absolute",
               top: 0,
               left: "25px",
@@ -91,10 +92,10 @@ export default function Home() {
         </div>
       </header>
       <main className={styles.main}>
-        <h1>Hoyas in August Event Attendees</h1>
+        <h1 style={{ textAlign: "center" }}>Hoyas in August Event Attendees</h1>
         <div className={styles.flexContainer}>
           <div className={styles.filtes}>
-            <h3>Filter Attendees</h3>
+            <h3 style={{ marginBottom: 0 }}>Filter Attendees</h3>
             <Searchbar
               label="By Name"
               attendees={attendees}
@@ -123,18 +124,28 @@ export default function Home() {
             />
           </div>
           <div
-            style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "10px",
+              marginTop: "4rem",
+            }}
             className={styles.attendees}
           >
             {filteredAttendees.map((attendee) => (
               <div
                 key={attendee.first_name}
                 style={{
-                  border: "2px solid #041E42",
-                  padding: "10px",
+                  border: "1px solid #041E42",
+                  padding: "10px 20px",
                   flex: "0 0 calc(50% - 10px)",
                   boxSizing: "border-box",
-                  height: "10rem",
+                  height: "8rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center", // Center vertically
+                  alignItems: "flex-start",
+                  maxWidth: "350px",
                 }}
               >
                 <p>{attendee.school_year_code}</p>
@@ -146,12 +157,12 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div>
+        <div className={styles.footerBar}>
           <div
             style={{
               position: "relative",
               width: "100%",
-              height: "5rem",
+              height: "3rem",
               background: "#041E42",
             }}
           ></div>
@@ -159,10 +170,11 @@ export default function Home() {
             style={{
               border: "1px orange solid",
               width: "33%",
-              height: "5rem",
+              height: "3rem",
               position: "absolute",
-              top: "65%",
-              right: 0,
+              bottom: 0,
+              // top: "65%",
+              right: "25px",
               zIndex: 1,
               transform: "translate(0, -50%)",
             }}
