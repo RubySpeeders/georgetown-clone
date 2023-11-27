@@ -19,7 +19,6 @@ const CheckboxContainer = ({
   onCheckboxChange,
 }: Props) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
-  const [isChecked, setIsChecked] = useState(false);
 
   const filterAttendees = (
     attendees: Attendee[],
@@ -29,21 +28,19 @@ const CheckboxContainer = ({
     const filteredAttendees = attendees.filter((attendee) => {
       let propertyToCheck: String;
       if (label === "Class" || label === "School") {
-        console.log("class or school");
         propertyToCheck = attendee.school_year_code;
+        console.log("class or school", propertyToCheck);
       } else if (label === "Registration Status") {
-        console.log("registry");
         propertyToCheck = attendee.registered;
+        console.log("registry", propertyToCheck);
       }
 
       console.log({ targetStrings });
-      console.log(
-        targetStrings.every((target) =>
-          String(propertyToCheck).toLowerCase().includes(target)
-        )
-      );
+      //targetStrings is like ['72, '68] or ['College', 'Law'] -- the options
+
       return targetStrings.every((target) =>
-        String(propertyToCheck).toLowerCase().includes(target)
+        //for every one of the target strings, check to see if the propertyToCheck has a target
+        propertyToCheck.includes(target)
       );
     });
     console.log(attendees, label, targetStrings);
@@ -59,7 +56,6 @@ const CheckboxContainer = ({
       : [...selectedCheckboxes, option];
 
     setSelectedCheckboxes(updatedCheckboxes);
-    setIsChecked((prev) => !prev);
 
     filterAttendees(attendees, label, updatedCheckboxes);
 
@@ -122,7 +118,7 @@ const CheckboxContainer = ({
               style={{ borderRadius: 0 }}
               checked={selectedCheckboxes.includes(option)}
               onChange={() => handleCheckboxChange(option)}
-              className={isChecked ? "checked" : ""}
+              className={selectedCheckboxes.includes(option) ? "checked" : ""}
             />
             <label htmlFor={option} style={labelStyle}>
               {option}

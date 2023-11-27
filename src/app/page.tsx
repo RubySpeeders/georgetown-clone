@@ -71,7 +71,6 @@ export default function Home() {
           ></div>
           <div
             style={{
-              //TODO max width, responsive design
               width: "18rem",
               height: "4rem",
               position: "absolute",
@@ -86,7 +85,6 @@ export default function Home() {
               layout="fill"
               objectFit="contain"
               objectPosition="center"
-              style={{}}
             />
           </div>
         </div>
@@ -97,6 +95,8 @@ export default function Home() {
             textAlign: "center",
             fontFamily: "adobe-caslon-pro, serif",
             fontStyle: "italic",
+            fontWeight: "lighter",
+            fontSize: "4rem",
             color: "#041E42",
           }}
         >
@@ -106,7 +106,7 @@ export default function Home() {
           <div className={styles.filters}>
             <h3
               style={{
-                marginBottom: 0,
+                margin: 0,
                 color: "#041E42",
                 fontFamily: "adobe-caslon-pro, serif",
               }}
@@ -145,7 +145,7 @@ export default function Home() {
               display: "flex",
               flexWrap: "wrap",
               gap: "10px",
-              marginTop: "4rem",
+              marginTop: "4.5rem",
             }}
             className={styles.attendees}
           >
