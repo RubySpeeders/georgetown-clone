@@ -72,7 +72,7 @@ export default function Home() {
           <div
             style={{
               //TODO max width, responsive design
-              width: "33%",
+              width: "18rem",
               height: "4rem",
               position: "absolute",
               top: 0,
@@ -159,30 +159,28 @@ export default function Home() {
         </div>
         <div className={styles.footerBar}>
           <div
+            className="box1"
             style={{
-              position: "relative",
+              position: "absolute",
               width: "100%",
               height: "3rem",
               background: "#041E42",
+              zIndex: 1,
             }}
           ></div>
           <div
+            className="box2"
             style={{
-              border: "1px orange solid",
-              width: "33%",
+              width: "18rem",
               height: "3rem",
               position: "absolute",
-              bottom: 0,
-              // top: "65%",
               right: "25px",
-              zIndex: 1,
-              transform: "translate(0, -50%)",
+              zIndex: 2,
             }}
           >
             <Image
               src="/georgetown-advancement-title.png"
               alt="georgetown-advancement-title"
-              //TODO FIGURE OUT HEIGHT AND WIDTH
               layout="fill"
               objectFit="contain"
               objectPosition="center"
