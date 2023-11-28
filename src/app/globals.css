@@ -64,6 +64,10 @@ input.checked::before {
 }
 
 @media (max-width: 768px) {
+  .attendee {
+    flex-direction: column;
+    width: 100%;
+  }
   .attendeeCard {
     flex: 0 0 calc(100% - 10px);
   }

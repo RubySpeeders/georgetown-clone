@@ -17,8 +17,8 @@ const AttendeeCard = ({ attendee }: Props) => {
         flexDirection: "column",
         justifyContent: "center", // Center vertically
         alignItems: "flex-start",
-        width: "600px",
-        maxWidth: "600px",
+        width: "100%",
+        maxWidth: "100%",
         flex: "0 0 calc(50% - 10px)",
         boxSizing: "border-box",
       }}
