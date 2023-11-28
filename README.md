@@ -26,3 +26,5 @@ Alternatively, visit [this link] to see the deployed page.
 Assuming that this page is behind authentication, I would write a hook to wrap the attendees to check if the user logged in is an "admin" or a plain "user". If the user is an "admin" they will be able to view those who are "incognito". Alternatively, if there is a way to make a separate API call, the "admin" could get all attendees, but the plain "user" would only get attendees where `attendee.incognito === "no"`.
 
 2. The prompt states that school and registration status filters should be generated dynamically based on values present.
+
+3. I made some executive decisions on styling and colors that I would be happy to change if given more detailed instructions.
