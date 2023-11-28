@@ -8,13 +8,6 @@ body {
   margin: 0;
 }
 
-.tkAdobeCaslonPro {
-  font-family: "adobe-caslon-pro", serif;
-}
-.tkFuturaPt {
-  font-family: "futura-pt", sans-serif;
-}
-
 .checkboxWrapper {
   display: flex;
   align-items: center;
@@ -48,12 +41,13 @@ input.checked {
 }
 
 input.checked::before {
-  content: "";
+  font-family: "futura, sans-serif";
+  content: "\2715";
   font-size: 1.5em;
   color: #fff;
   position: absolute;
-  right: 1px;
-  top: -5px;
+  right: 2px;
+  top: -2px;
 }
 
 .footer {
@@ -72,5 +66,11 @@ input.checked::before {
 @media (max-width: 768px) {
   .attendeeCard {
     flex: 0 0 calc(100% - 10px);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    min-width: 100%; /* Set a minimum width to take up the full width */
   }
 }

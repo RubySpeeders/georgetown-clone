@@ -16,7 +16,6 @@ export type Attendee = {
   first_name: string;
   last_name: string;
   school_year_code: string;
-  [key: string]: string; // Index signature for dynamic properties
 };
 
 export default function Home() {
@@ -38,7 +37,7 @@ export default function Home() {
     {
       registered: "No",
       incognito: "Yes",
-      first_name: "Wiliam",
+      first_name: "William",
       last_name: "Clinton",
       school_year_code: "College '68",
     },
@@ -109,7 +108,8 @@ export default function Home() {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: "10px",
+              gap: "20px",
+              alignContent: "flex-start",
             }}
             className={styles.attendees}
           >

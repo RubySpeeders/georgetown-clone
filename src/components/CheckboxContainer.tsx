@@ -104,6 +104,7 @@ const CheckboxContainer = ({
               className={selectedCheckboxes.includes(option) ? "checked" : ""}
               aria-aria-labelledbyby={option}
             />
+            <span className="checkmark"></span>
             <label htmlFor={option} style={labelStyle}>
               {option}
             </label>
