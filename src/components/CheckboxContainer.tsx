@@ -102,7 +102,7 @@ const CheckboxContainer = ({
               checked={selectedCheckboxes.includes(option)}
               onChange={() => handleCheckboxChange(option)}
               className={selectedCheckboxes.includes(option) ? "checked" : ""}
-              aria-aria-labelledbyby={option}
+              aria-labelledby={option}
             />
             <span className="checkmark"></span>
             <label htmlFor={option} style={labelStyle}>
