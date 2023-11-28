@@ -2,7 +2,7 @@ import { Attendee } from "@/app/page";
 import React, { useState } from "react";
 
 interface Props {
-  label: string;
+  title: string;
   options: string[];
   attendees: Attendee[];
   onCheckboxChange: (filteredAttendees: Attendee[]) => void;
@@ -13,7 +13,7 @@ const labelStyle = {
 };
 
 const CheckboxContainer = ({
-  label,
+  title,
   options,
   attendees,
   onCheckboxChange,
@@ -29,18 +29,27 @@ const CheckboxContainer = ({
       let propertyToCheck: String;
       if (label === "Class" || label === "School") {
         propertyToCheck = attendee.school_year_code;
+        //targetStrings = ["College", "Law"]
         return targetStrings.every((target) =>
           //for every one of the target strings, check to see if the propertyToCheck has a target
           propertyToCheck.includes(target)
         );
       } else if (label === "Registration Status") {
-        //TODO FIGURE OUT THSI LOGIC
         propertyToCheck = attendee.registered;
-        console.log("registry", propertyToCheck, targetStrings);
-        return targetStrings.every(() =>
-          //for every one of the target strings, check to see if the propertyToCheck has a target
-          propertyToCheck.includes("Yes")
-        );
+        if (targetStrings.length === 2 || targetStrings.length === 0) {
+          return attendees;
+        }
+        if (targetStrings.includes("Registered")) {
+          return targetStrings.every(() =>
+            //for every one of the target strings, check to see if the propertyToCheck has a target
+            propertyToCheck.includes("Yes")
+          );
+        } else if (targetStrings.includes("Not Registered")) {
+          return targetStrings.every(() =>
+            //for every one of the target strings, check to see if the propertyToCheck has a target
+            propertyToCheck.includes("No")
+          );
+        }
       }
     });
 
@@ -55,14 +64,14 @@ const CheckboxContainer = ({
 
     setSelectedCheckboxes(updatedCheckboxes);
 
-    const filtered = filterAttendees(attendees, label, updatedCheckboxes);
+    const filtered = filterAttendees(attendees, title, updatedCheckboxes);
     //this will call setState to change what is rendered on the page
     onCheckboxChange(filtered);
   };
 
   return (
     <div>
-      <h5
+      <p
         style={{
           marginBottom: "1rem",
           color: "#041E42",
@@ -70,8 +79,8 @@ const CheckboxContainer = ({
           fontWeight: 400,
         }}
       >
-        {label}
-      </h5>
+        {title}
+      </p>
       <div
         style={{
           display: "flex",
@@ -93,6 +102,7 @@ const CheckboxContainer = ({
               checked={selectedCheckboxes.includes(option)}
               onChange={() => handleCheckboxChange(option)}
               className={selectedCheckboxes.includes(option) ? "checked" : ""}
+              aria-aria-labelledbyby={option}
             />
             <label htmlFor={option} style={labelStyle}>
               {option}

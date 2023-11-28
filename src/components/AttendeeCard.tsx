@@ -8,7 +8,6 @@ interface Props {
 const AttendeeCard = ({ attendee }: Props) => {
   return (
     <div
-      key={attendee.first_name}
       className="attendeeCard"
       style={{
         border: "1px solid #041E42",

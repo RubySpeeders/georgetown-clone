@@ -31,7 +31,7 @@ const Searchbar = ({ label, attendees, onSearch }: Props) => {
         flexDirection: "column",
       }}
     >
-      <h5
+      <p
         style={{
           marginBottom: "5px",
           color: "#041E42",
@@ -40,13 +40,14 @@ const Searchbar = ({ label, attendees, onSearch }: Props) => {
         }}
       >
         {label}
-      </h5>
+      </p>
       <div style={{ display: "flex" }}>
         <input
           type="text"
           value={searchValue}
           onChange={handleInputChange}
           placeholder=""
+          aria-label={`Search ${label}`}
           style={{
             border: "1px solid #63666A",
             width: "100%",

@@ -38,6 +38,10 @@ body {
   cursor: pointer;
 }
 
+input:focus {
+  outline: 1px solid #041e42;
+}
+
 input.checked {
   background-color: #041e42;
   position: relative;

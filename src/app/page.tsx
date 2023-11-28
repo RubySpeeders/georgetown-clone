@@ -68,7 +68,7 @@ export default function Home() {
         <h1>Hoyas in August Event Attendees</h1>
         <div className={styles.flexContainer}>
           <div className={styles.filters}>
-            <h3
+            <p
               style={{
                 margin: 0,
                 color: "#041E42",
@@ -77,7 +77,7 @@ export default function Home() {
               }}
             >
               Filter Attendees
-            </h3>
+            </p>
             <Searchbar
               label="By Name"
               attendees={attendees}
@@ -85,21 +85,21 @@ export default function Home() {
             />
             <Divider />
             <CheckboxContainer
-              label="School"
+              title="School"
               attendees={attendees}
               options={["College", "Law"]}
               onCheckboxChange={handleCheckboxChange}
             />
             <Divider />
             <CheckboxContainer
-              label="Registration Status"
+              title="Registration Status"
               attendees={attendees}
               options={["Registered", "Not Registered"]}
               onCheckboxChange={handleCheckboxChange}
             />
             <Divider />
             <CheckboxContainer
-              label="Class"
+              title="Class"
               attendees={attendees}
               options={["'68", "'72", "'86", "'92"]}
               onCheckboxChange={handleCheckboxChange}
@@ -114,7 +114,7 @@ export default function Home() {
             className={styles.attendees}
           >
             {filteredAttendees.map((attendee) => (
-              <AttendeeCard attendee={attendee} />
+              <AttendeeCard attendee={attendee} key={attendee.first_name} />
             ))}
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function Home() {
           >
             <Image
               src="/georgetown-advancement-title.png"
-              alt="georgetown-advancement-title"
+              alt="Georgetown University Advancement"
               layout="fill"
               objectFit="contain"
               objectPosition="center"

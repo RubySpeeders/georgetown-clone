@@ -24,7 +24,7 @@ const Header = () => {
         >
           <Image
             src="/georgetown-title.png"
-            alt="georgetown-title"
+            alt="Georgetown University"
             layout="fill"
             objectFit="contain"
             objectPosition="center"
