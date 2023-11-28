@@ -26,6 +26,10 @@ npm run dev
 
 3. I made some styling and color decisions, but I'm open to adjustments based on more detailed instructions.
 
+4. Checkbox Logic Considerations:
+   - **Current Behavior:** The checkboxes operate on an AND (&&) logic basis. For instance, if "College" and "Law" are both selected, only attendees who have both options in their profile are shown.
+   - **Potential Enhancement:** An alternative approach could involve using a combination of AND (&&) and OR (||) logic. This would allow displaying attendees who have both selected options or at least one of them. The decision on which logic to implement could be determined through discussions with the team and potential users, considering the most applicable use case.
+
 ## Future Improvements
 
 1. Organizing styling: Given more time, I would enhance the organization of styling. Currently, it's spread across inline styles, the module.css file, and the global.css file. Better organization would improve code understanding for future collaborators.
